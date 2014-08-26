@@ -1,0 +1,68 @@
+<h1>Administration</h1>
+<p></p>
+<div class="row">
+	<div class="col-md-6">
+		<h2>Gifts</h2>
+		<%= link_to 'Add Gift', new_gift_path, class: 'btn btn-primary btn-sm' %>
+		<table class = 'table'>
+		 <tr>
+		 <th>Name</th>
+		 <th>Price</th>
+		 </tr>
+		 <% @gifts.each do |gift| %>
+		 <tr>
+
+		 <td><%= image_tag(gift.picture_url(:thumbnail), width: 50, height: 50) %><%= link_to gift.name, gift %></td>
+		 <td><%= gift.price %></td>
+		 <% end %>	
+		</tr>
+		</table> 
+	</div>
+	<div class="col-md-6">
+		<h2>Accounts</h2>
+		<table class = 'table'>
+		 <tr>
+		 <th>Name</th>
+		 <th>Email</th>
+		 </tr>
+		 <% @accounts.each do |account| %>
+		 <tr>
+		 <td><%= account.name %></td>
+		 <td><%= account.user.email %></td>
+		 <% end %>	
+		</tr>
+		</table> 
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<h2>Upcoming Occasions</h2>
+		<table class = 'table'>
+		 <tr>
+		 <th>Name</th>
+		 <th>Date</th>
+		 <th>Occasion Type</th>
+		 <th>Message</th>
+		 <th>Recipient</th>
+		 </tr>
+		 <% @future_occasions.each do |occ| %>
+		 <tr>
+			 <td><%= occ.name %></td>
+			 <td><%= occ.date %></td>
+		     <td><%= occ.occasion_type %></td>
+			 <td><%= occ.message %></td>
+			 <td><%= occ.recipient.name %></td>
+		 	 <td><ul> 
+		 	 		<% if occ.gifts.count > 0 %>
+		 	      <% occ.gifts.each  do |gift| %>
+		 	      <li><%= gift.name %> </li>
+		 	      	  <% end %>
+		 	      	  <% end %>
+		 	 </ul></td>     
+		 <% end %>	
+		</tr>
+		</table> 
+	</div>
+	
+</div>
+
